@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report Card System Demo Download</title>
+  <style>
+    /* Reset & font */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; transition: background 0.3s, color 0.3s;}
+    body { display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; background: #f0f2f5; color: #333; }
+    
+    /* Container */
+    .container {
+      max-width: 700px;
+      background: #fff;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    /* Logo / banner */
+    .logo {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 20px;
+      border-radius: 20px;
+      object-fit: cover;
+    }
+
+    h1 { font-size: 36px; margin-bottom: 5px; }
+    h2 { font-weight: normal; margin-bottom: 20px; color: #555; }
+    p { font-size: 16px; margin-bottom: 25px; color: #666; }
+
+    /* Info Table */
+    .info-table { width: 100%; margin-bottom: 30px; text-align: left; }
+    .info-table th, .info-table td { padding: 10px; font-size: 15px; }
+    .info-table th { text-align: left; color: #007bff; }
+    .info-table td { color: #333; }
+
+    /* Download button & progress bar */
+    .download-wrapper { position: relative; display: inline-block; width: 250px; }
+    .download-btn {
+      display: block;
+      padding: 15px 25px;
+      font-size: 18px;
+      color: #fff;
+      background-color: #007bff;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.3s;
+      text-align: center;
+      z-index: 2;
+      position: relative;
+      overflow: hidden;
+    }
+    .download-btn:hover { background-color: #0056b3; cursor: pointer; }
+    .progress-bar {
+      position: absolute;
+      left: 0; top: 0;
+      height: 100%;
+      width: 0;
+      background: rgba(255,255,255,0.3);
+      z-index: 1;
+      transition: width 2s ease;
+    }
+
+    /* Popup */
+    .popup {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #28a745;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      display: none;
+      animation: slideIn 0.5s forwards;
+      z-index: 1000;
+    }
+    @keyframes slideIn { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Dark mode */
+    body.dark { background: #121212; color: #eee; }
+    body.dark .container { background: #1f1f1f; color: #eee; }
+    body.dark .info-table td { color: #ddd; }
+    body.dark .info-table th { color: #4dabf7; }
+    body.dark .download-btn { background-color: #4dabf7; }
+    body.dark .download-btn:hover { background-color: #1c7ed6; }
+
+    /* Footer */
+    footer { margin-top: 30px; font-size: 14px; color: #999; }
+
+    /* Toggle Button */
+    .toggle-btn { position: absolute; top: 20px; right: 20px; padding: 10px 15px; background: #007bff; color: white; border-radius: 6px; cursor: pointer; font-size: 14px; }
+    body.dark .toggle-btn { background: #4dabf7; color: #121212; }
+  </style>
+</head>
+<body>
+
+  <div class="toggle-btn" id="toggleBtn">Dark Mode</div>
+
+  <div class="container">
+    <img src="logo.png" alt="LJamil" class="logo" loading="lazy">
+    <h1>Report Card System Demo</h1>
+    <h2>Version 1.0</h2>
+    <p>Created By JCode.</p>
+
+    <table class="info-table">
+      <tr><th>File Size:</th><td>less than 8 MB</td></tr>
+      <tr><th>Operating System:</th><td>Windows 10 or higher</td></tr>
+      <tr><th>Requirements:</th><td>2 GB RAM, 100 MB free disk space</td></tr>
+    </table>
+
+    <div class="download-wrapper">
+      <div class="progress-bar" id="progressBar"></div>
+      <a class="download-btn" href="LJ v1 Report Card System_0.1.2_x64-setup.exe" download id="downloadBtn">Download Now</a>
+    </div>
+
+    <footer>© 2026 MyProgram. All rights reserved.</footer>
+  </div>
+
+  <div class="popup" id="popup">✅ Your download has started!</div>
+
+  <script>
+    const downloadBtn = document.getElementById('downloadBtn');
+    const popup = document.getElementById('popup');
+    const progressBar = document.getElementById('progressBar');
+    const toggleBtn = document.getElementById('toggleBtn');
+    const body = document.body;
+
+    // Download click
+    downloadBtn.addEventListener('click', () => {
+      // Show popup
+      popup.style.display = 'block';
+      setTimeout(() => { popup.style.display = 'none'; }, 3000);
+
+      // Animate progress bar
+      progressBar.style.width = '100%';
+      setTimeout(() => { progressBar.style.width = '0%'; }, 2000);
+    });
+
+    // Dark/Light toggle
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      toggleBtn.textContent = body.classList.contains('dark') ? 'Light Mode' : 'Dark Mode';
+    });
+  </script>
+
+</body>
+</html>
